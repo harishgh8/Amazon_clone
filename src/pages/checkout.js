@@ -10,14 +10,14 @@ import { selecttotal } from "../slices/basketSlice";
 
 function Checkout() {
   const items = useSelector(selectItems);
-  const { session } = useSession;
+  const { data: session } = useSession();
   const subtotal = useSelector(selecttotal);
   const taxes = subtotal * 0.13;
   const totalWithTax = subtotal * 0.13 + subtotal;
   return (
     <div className="bg-gray-100">
       <Header />
-      <main className="lg:flex max-w-screen-2xl mx-auto">
+      <main className="lg:flex max-w-screen-2xl mx-auto m-2">
         <div className="flex-grow m-5 shadow-sm">
           <Image
             src="https://links.papareact.com/dyz"
@@ -73,6 +73,7 @@ function Checkout() {
               </h2>
             </>
           )}
+
           <button
             disabled={!session}
             className={`button mt-2 ${
@@ -80,7 +81,7 @@ function Checkout() {
               "from-fray-300 to-gray-500 border-gray-200 cursor-not-allowed"
             }`}
           >
-            {!session ? "Sign in to checout" : "Proceed to checkout"}
+            {!session ? "Sign in to checkout" : "Proceed to checkout"}
           </button>
         </div>
       </main>

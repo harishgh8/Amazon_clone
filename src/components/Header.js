@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 
 const Header = () => {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems);
   console.log(items);
@@ -43,7 +43,7 @@ const Header = () => {
             onClick={!session ? signIn : signOut}
             className="cursor-pointer link"
           >
-            <p>{session ? `Hello ${session.user.name}` : "Sign in"}</p>
+            <p>{session ? `Hello ${session.user.email}` : "Sign in"}</p>
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
           <div className="link">
